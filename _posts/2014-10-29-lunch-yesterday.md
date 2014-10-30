@@ -1,6 +1,6 @@
 ---
 title: What I ate for lunch yesterday
-layout: posts
+layout: post
 image: http://www.mikeandjohnsworld.net/gw1/Portals/0/ChxBaconRanch.jpg
 ---
 
