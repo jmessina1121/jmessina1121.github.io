@@ -1,0 +1,373 @@
+*{
+	box-sizing: border-box; /* Check Prefix*/
+}
+
+/**Typography**/
+
+body {
+	font-size: 16px;
+	line-height: 1.45;
+	font-family: 'Georgia', sans-serif;
+	color: #333;
+	text-rendering: optimizeLegibility;
+}
+p { 
+	margin-bottom: 1.3em;
+	max-width: 40em;
+	text-rendering: optimizeLegibility;
+ }
+.main-content p{
+    text-align: left;
+	text-indent: 1em;
+}
+
+
+h1{
+	font-family: "Verdana", sans-serif;
+	max-width: 35em;
+}
+
+h2{
+	font-family: "Verdana", sans-serif;
+	max-width: 35em;
+}
+
+h3{
+	font-family: "Verdana", sans-serif;
+	max-width: 35em;
+}
+
+.site-footer {
+	line-height: 3px;
+	font-weight: bold;
+	font-variant: small-caps;
+	margin-top: 50px;
+	border: 1px solid #CCC;
+}
+.nav-link{
+		text-decoration: none;
+		padding: 0.5em 0.8em;
+		border-radius: 1.25em;
+		background-color: #ddd;
+		color: #333;
+		font-size: 0.9em;
+}
+.nav-link:hover{
+	background-color: grey;
+}
+
+.site-title {
+	text-align: right;
+	font-size: 1.45em;
+	font-weight: bold;
+	font-variant: small-caps;
+	text-decoration: none;
+	color: #fff;
+}
+
+
+.site-title-container{
+	float: left;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+.title-breaker{
+	display: block;
+}
+
+@media(min-width: 510px){
+	.title-breaker{
+		display: none;
+	}
+
+	.site-title{
+		font-size: 1.65em;
+	}
+}
+
+@media(max-width: 375px){
+	.site-title{
+		font-size: 1.25em;
+	}
+}
+
+.left-header{
+	float: left;
+}
+
+
+
+.left-header img{
+	float: left;
+}
+
+@media(max-width: 650px){
+	.left-header{
+		float: none;
+		width: 451px;
+		margin: 0 auto;
+	}
+
+	.nav-bar{
+		text-align: center;
+		font-size: 0.9em;
+	}
+
+	.site-header{
+		padding-top: 1em;
+	}
+}
+
+.title-sub{
+	color: #fff;
+	display: none;
+}
+.contact-img{
+	max-width: 100%;
+}
+.team-img{
+	max-width: 100%;
+}
+
+@media(min-width: 510px){
+	.title-sub{
+		display: block;
+	}
+}
+
+.site-title:hover{
+	color: grey;
+}
+
+
+/**Layout**/
+.container{
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.hero-img{
+	max-width: 100%;
+	padding-top: 1em;
+	padding-left: 1em;
+}
+
+.nav-bar{
+	padding: 15px 0;
+}
+
+@media(min-width: 651px){
+	.nav-bar{
+		float: right;
+	}
+
+	.site-header{
+		padding-bottom: 2em;
+		padding-top: 2em;
+	}
+}
+
+.site-header{
+	background-color: #870126;	
+}
+
+/**Navigation**/
+.header-nav{
+	font-weight: bold;
+	text-transform: capitalize;
+	list-style: none;
+	padding-right: 2.3em;
+}
+
+@media(max-width: 450px){
+	.header-nav{
+		padding: 0;
+	}
+}
+
+@media(max-width: 375px){
+	.nav-link{
+		font-size: 0.8em;
+		padding: 0.5em;
+	}
+}
+
+.header-nav li {
+	display: inline-block;
+}
+
+.img-team{
+	float: left;
+}
+/**Columns**/
+
+.col{
+	float: left;
+	width: 50.00%;
+	padding: 1em;
+	text-align: center;
+}
+
+@media(max-width: 510px){
+	.col{
+		width: 100%;
+	}
+
+	.col p{
+		text-align: justify;
+	}
+}
+
+.col img{
+    margin-right: 10px;
+}
+
+.col-main{
+	float: left;
+}
+
+.col-sidebar{
+	width: 30%;
+	float: right;
+	border: 1px dashed;
+}
+
+.sidebar-title{
+	text-align: center;
+}
+
+@media(max-width: 870px){
+	.col-sidebar{
+		width: 100%;
+	}
+
+	.col-main{
+		width: 100%;
+	}
+}
+
+/**Panels**/
+.panels {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.panel {
+  margin-bottom: 1em;
+  background: white;
+}
+
+.panel-title {
+  font-weight: bold;
+  background: #870126;
+  color: white;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  margin-bottom: 0.25em;
+  border-radius: 0.5em;
+}
+
+.panel-title:hover {
+  background: #333;
+}
+
+.panel-content {
+  padding: 1em;
+  display: none;
+}
+
+p.welcome-text, .welcome-title{
+	max-width: 100%;
+	text-align: center;
+	text-indent: 0;
+}
+
+.col-30{
+	width: 32%;
+	float: left;
+	text-align: center;
+	padding: 5px;
+}
+
+.section-title, p.section-description{
+	text-indent: 0;
+	text-align: center;
+}
+
+.section-img{
+	max-width: 220px;
+}
+
+.index-columns{
+	margin-bottom: 30px;
+}
+
+@media(max-width:810px){
+	.col-30{
+		width: 100%;
+	}	
+	
+	.section-image{
+		float: left;
+		width: 30%;
+	}
+	
+	.section-text{
+		width: 70%;
+		float: right;
+		padding-left: 5px;
+	}
+	
+	.section-title, p.section-description, .section-text{
+		text-align: left;
+	}
+}
+
+@media(max-width:770px){
+	.section-img{
+		max-width: 180px;
+	}
+}
+
+@media(max-width: 645px){
+	.section-image{
+		width: 100%;
+	}
+	
+	.section-title, p.section-description, .section-text{
+		text-align: center;
+	}
+	
+	.section-text{
+		width: 100%;
+		padding-left: 0;
+	}
+}
+
+/**Utilities**/
+
+/**
+* For modern browsers
+* 1. The space content is one way to avoid an Opera bug when the
+* contenteditable attribute is included anywhere else in the document.
+* Otherwise it causes space to appear at the top and bottom of elements
+* that are clearfixed.
+* 2. The use of `table` rather than `block` is only necessary if using
+* `:before` to contain the top-margins of child elements.
+*/
+.cf:before,
+.cf:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+.cf:after {
+	clear: both;
+}
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.cf {
+	*zoom: 1;
+}
