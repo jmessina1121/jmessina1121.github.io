@@ -3,9 +3,7 @@
 }
 
 /**Typography**/
-.img {
-	display:block;
-	margin:0 auto;
+
 }
 body {
 	font-size: 16px;
@@ -41,6 +39,13 @@ h3{
 	max-width: 35em;
 }
 
+.img {
+	display:block;
+	margin:0 auto;
+}
+img {
+	max-width:100%;
+}
 .site-footer {
 	line-height: 3px;
 	font-weight: bold;
