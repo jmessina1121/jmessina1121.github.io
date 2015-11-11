@@ -46,6 +46,12 @@ h3{
 }
 img {
 	max-width:100%;
+	    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 .site-footer {
 	line-height: 3px;
