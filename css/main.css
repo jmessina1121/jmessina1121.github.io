@@ -4,14 +4,12 @@
 
 /**Typography**/
 
-}
 body {
 	font-size: 16px;
 	line-height: 1.45;
 	font-family: 'Georgia', sans-serif;
 	color: #333;
 	text-rendering: optimizeLegibility;
-	margin:0 auto;
 }
 p { 
 	margin-bottom: 1.3em;
@@ -39,20 +37,6 @@ h3{
 	max-width: 35em;
 }
 
-.img {
-	display: block;
-    margin-left: auto;
-    margin-right: auto; }
-}
-img {
-	max-width:100%;
-	    text-align: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
 .site-footer {
 	line-height: 3px;
 	font-weight: bold;
@@ -71,6 +55,8 @@ img {
 .nav-link:hover{
 	background-color: grey;
 }
+
+
 
 .site-title {
 	text-align: right;
@@ -200,6 +186,7 @@ img {
 @media(max-width: 450px){
 	.header-nav{
 		padding: 0;
+		
 	}
 }
 
@@ -217,6 +204,22 @@ img {
 .img-team{
 	float: left;
 }
+
+@media (max-width: 750px){
+  .header-nav li{
+  	display: block;
+  	margin: 1em;
+  }
+  .nav-main {
+  	display: none;
+  }
+  .header-nav {display: none;}
+}
+@media (min-width: 750px){
+  button {display: none;}
+
+} 
+
 /**Columns**/
 
 .col{
@@ -304,6 +307,10 @@ p.welcome-text, .welcome-title{
 	float: left;
 	text-align: center;
 	padding: 5px;
+	border: 2px solid #870126;
+	background-color: lightgrey;
+	border-radius: 25px;
+	margin-right: 10px;
 }
 
 .section-title, p.section-description{
@@ -316,7 +323,7 @@ p.welcome-text, .welcome-title{
 }
 
 .index-columns{
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 @media(max-width:810px){
