@@ -152,14 +152,18 @@ h3{
 	padding: 0 10px;
 }
 
-.container-marine{
+.marine-left{
 	display: inline-block;
 	width: 50 %;
 	padding-top: 2em;
 	float:left;
-
 }
 
+.marine-right{
+	width: 50%;
+	float:left;
+	padding-top: 2em;
+}
 
 .hero-img{
 	max-width: 100%;
