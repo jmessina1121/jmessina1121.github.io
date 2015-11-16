@@ -20,7 +20,7 @@ p {
     text-align: left;
 	text-indent: 1em;
 }
-
+.
 
 h1{
 	font-family: "Verdana", sans-serif;
@@ -148,6 +148,11 @@ h3{
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 10px;
+}
+
+.container-marine{
+	display:inline;
+	padding-top: 2em;
 }
 
 .hero-img{
