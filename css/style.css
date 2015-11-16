@@ -1,7 +1,12 @@
 *{
 	box-sizing: border-box; /* Check Prefix*/
 }
-
+#container-marine{
+	width: 50%;
+}
+#marine-info{
+	width:50%;
+}
 /**Typography**/
 
 body {
