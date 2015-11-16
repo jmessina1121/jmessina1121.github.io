@@ -25,6 +25,7 @@ p {
 h1{
 	font-family: "Verdana", sans-serif;
 	max-width: 35em;
+	padding-top: 2em;
 }
 
 h2{
@@ -153,6 +154,7 @@ h3{
 .container-marine{
 	display:inline;
 	padding-top: 2em;
+	float:left;
 }
 
 .hero-img{
