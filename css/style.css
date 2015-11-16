@@ -1,11 +1,7 @@
 *{
 	box-sizing: border-box; /* Check Prefix*/
 }
-#container-marine{
-	width: 50%;
-}
-#marine-info{
-	width:50%;
+
 }
 /**Typography**/
 
@@ -157,7 +153,8 @@ h3{
 }
 
 .container-marine{
-	display:inline;
+	display: inline-block;
+	width: 50 %;
 	padding-top: 2em;
 	float:left;
 
