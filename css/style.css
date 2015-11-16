@@ -155,9 +155,10 @@ h3{
 	display:inline;
 	padding-top: 2em;
 	float:left;
-h1{
-	padding-top: 2em;
+
 }
+.marine-info{
+	float:right;
 }
 
 .hero-img{
