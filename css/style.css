@@ -17,6 +17,11 @@ p {
 	max-width: 40em;
 	text-rendering: optimizeLegibility;
  }
+ #para1 {
+ 	margin-bottom: 1.3em;
+	max-width: 20em;
+	text-rendering: optimizeLegibility;
+ }
 .main-content p{
     text-align: left;
 	text-indent: 1em;
