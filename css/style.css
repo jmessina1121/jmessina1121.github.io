@@ -5,6 +5,16 @@
 
 /**Typography**/
 
+.content-columns {
+	text-align: center;
+}
+
+.col {
+	float: left;
+	width: 33.33%;
+	/*border: 1px solid #ddd;*/
+}
+
 body {
 	font-size: 16px;
 	line-height: 1.45;
@@ -249,12 +259,12 @@ h3{
 
 /**Columns**/
 
-.col{
+/**.col{
 	float: left;
 	width: 50.00%;
 	padding: 1em;
 	text-align: center;
-}
+}**/
 
 @media(max-width: 510px){
 	.col{
