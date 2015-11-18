@@ -1,6 +1,10 @@
 *{
 	box-sizing: border-box; /* Check Prefix*/
 }
+.stuff{
+	width: 50%;
+	float:left;
+}
 
 
 .marine-columns {
