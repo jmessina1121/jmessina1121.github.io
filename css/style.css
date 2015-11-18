@@ -2,6 +2,17 @@
 	box-sizing: border-box; /* Check Prefix*/
 }
 
+.content-stuff {
+	text-align: center;
+}
+
+.column {
+	float: left;
+	width: 33.33%;
+	/*border: 1px solid #ddd;*/
+}
+
+
 
 /**Typography**/
 
