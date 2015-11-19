@@ -34,7 +34,7 @@ html, body {  }
 .slides input { display: none; }
 
 .slide-container { display: block;
-padding-top: 1em;}
+}
 
 .slide {
     top: 0;
