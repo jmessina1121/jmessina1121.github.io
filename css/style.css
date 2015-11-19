@@ -89,7 +89,7 @@ html, body {  }
 }
 
 .nav .next {
-  right: 0;
+  left: 360px;
 }
 
 input:checked + .slide-container .slide {
