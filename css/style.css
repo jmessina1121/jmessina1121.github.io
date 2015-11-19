@@ -45,10 +45,6 @@ html, body {  }
   position: relative;
 }
 
-.slide ul {
-	widthL 500px;
-	height: 420px;
-}
 
 .slides * {
   user-select: none;
