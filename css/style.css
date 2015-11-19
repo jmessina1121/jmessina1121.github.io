@@ -2,6 +2,9 @@
 	box-sizing: border-box; /* Check Prefix*/
 }
 
+#homepara
+{ max-width: 80em; }
+
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
 html, body {  }
