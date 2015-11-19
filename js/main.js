@@ -73,8 +73,7 @@ function cycleImage(){
     .nextAll(":input:first").attr("checked", "checked");
 }
 
-.appendTo(‘#slide’);
-}, 2000);
+
 //^slideshow
 
 
