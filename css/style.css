@@ -65,7 +65,7 @@ html, body {  }
 .slide {
   top: 0;
   opacity: 0;
-  width: 609px;
+  width: 500px;
   height: 420px;
   display: block;
   position: absolute;
