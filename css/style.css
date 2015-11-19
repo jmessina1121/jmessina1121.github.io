@@ -38,11 +38,16 @@ html, body {  }
 
 .slides {
   padding: em;
-  width: 609px;
+  width: 609;
   height: 420px;
   display: block;
   margin: 0 auto;
   position: relative;
+}
+
+.slide ul {
+	widthL 500px;
+	height: 420px;
 }
 
 .slides * {
