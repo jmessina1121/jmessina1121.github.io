@@ -3,7 +3,10 @@
 }
 
 #homepara
-{ max-width: 80em; }
+{ max-width: 80em;
+	text-align:center;
+	padding-top:2em;
+}
 
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
