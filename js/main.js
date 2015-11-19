@@ -72,6 +72,9 @@ function cycleImage(){
   $("input:checked, input[checked]").removeAttr("checked")
     .nextAll(":input:first").attr("checked", "checked");
 }
+
+.appendTo(‘#slide’);
+}, 2000);
 //^slideshow
 
 
