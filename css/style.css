@@ -38,7 +38,7 @@ html, body {  }
 
 .slides {
   padding: em;
-  width: 500px;
+  width: 609px;
   height: 420px;
   display: block;
   margin: 0 auto;
@@ -65,7 +65,7 @@ html, body {  }
 .slide {
   top: 0;
   opacity: 0;
-  width: 500px;
+  width: 609px;
   height: 420px;
   display: block;
   position: absolute;
