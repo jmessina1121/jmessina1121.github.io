@@ -2,6 +2,11 @@
 $('#btn-menu').click(function(){
 	$('.nav-main').slideToggle();
 });
+
+$(document).ready(function(){
+    $(".nav-internal").sticky({topSpacing:5});
+  });
+  
 //panel1
 $("#panel1").click(function(){
   $("#panelC1").toggle(1000);
