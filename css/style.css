@@ -1,6 +1,11 @@
 *{
 	box-sizing: border-box; /* Check Prefix*/
 }
+
+#slider { width:960px;height:420px; }
+div.navBulletsWrapper  { top:320px; left:280px; }
+
+
 .stuff{
 	width: 50%;
 	float:left;
