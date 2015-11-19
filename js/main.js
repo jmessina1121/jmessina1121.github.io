@@ -57,23 +57,20 @@ $(document).ready(function(){
     $(".nav-internal").sticky({topSpacing:5});
   });
   
-  var sliderOptions =
-{
-    sliderId: "slider",
-    startSlide: 0,
-    effect: "series1",
-    effectRandom: false,
-    pauseTime: 2800,
-    transitionTime: 1200,
-    slices: 14,
-    boxes: 8,
-    hoverPause: 1,
-    autoAdvance: true,
-    captionOpacity: 0.4,
-    captionEffect: "fade",
-    thumbnailsWrapperId: "thumb_container_id",
-    m: false,
-    license: "mylicense"
-};
+var imageLoop;
+imageLoop = setInterval(cycleImage, 5000);
+
+$(".sb-bignav").click(function() {
+    clearTimeout(imageLoop);
+    imageLoop = setInterval(cycleImage, 5000);
+});
+
+function cycleImage(){
+  if ($("input:checked, input[checked]").nextAll(":input:first").length == 0) {
+      $("input:first").attr("checked", "checked");
+  }
+  $("input:checked, input[checked]").removeAttr("checked")
+    .nextAll(":input:first").attr("checked", "checked");
+}
   
   
