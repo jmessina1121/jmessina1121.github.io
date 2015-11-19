@@ -1,6 +1,10 @@
 *{
 	box-sizing: border-box; /* Check Prefix*/
 }
+.img
+{
+	text-align:center;
+}
 
 #homepara
 { max-width: 80em;
