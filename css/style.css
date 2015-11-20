@@ -10,7 +10,7 @@
 #homepara
 { max-width: 80em;
 	text-align:center;
-	padding-top:2em;
+	
 }
 
 .imageslider{
@@ -112,6 +112,8 @@ input:checked + .slide-container .nav label {
   display: block;
   position: absolute;
   text-align: center;
+  padding-right: 5em;
+  padding-bottom:3em;
 }
 
 .nav-dots .nav-dot {
