@@ -1,373 +1,170 @@
-*{
-	box-sizing: border-box; /* Check Prefix*/
-}
+// Sticky Plugin v1.0.0 for jQuery
+// =============
+// Author: Anthony Garand
+// Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
+// Improvements by Leonardo C. Daronco (daronco)
+// Created: 2/14/2011
+// Date: 2/12/2012
+// Website: http://labs.anthonygarand.com/sticky
+// Description: Makes an element on the page stick on the screen as you scroll
+//       It will only set the 'top' and 'position' of your element, you
+//       might need to adjust the width in some cases.
 
-/**Typography**/
+(function($) {
+  var defaults = {
+      topSpacing: 0,
+      bottomSpacing: 0,
+      className: 'is-sticky',
+      wrapperClassName: 'sticky-wrapper',
+      center: false,
+      getWidthFrom: '',
+      responsiveWidth: false
+    },
+    $window = $(window),
+    $document = $(document),
+    sticked = [],
+    windowHeight = $window.height(),
+    scroller = function() {
+      var scrollTop = $window.scrollTop(),
+        documentHeight = $document.height(),
+        dwh = documentHeight - windowHeight,
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
-body {
-	font-size: 16px;
-	line-height: 1.45;
-	font-family: 'Georgia', sans-serif;
-	color: #333;
-	text-rendering: optimizeLegibility;
-}
-p { 
-	margin-bottom: 1.3em;
-	max-width: 40em;
-	text-rendering: optimizeLegibility;
- }
-.main-content p{
-    text-align: left;
-	text-indent: 1em;
-}
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i],
+          elementTop = s.stickyWrapper.offset().top,
+          etse = elementTop - s.topSpacing - extra;
 
+        if (scrollTop <= etse) {
+          if (s.currentTop !== null) {
+            s.stickyElement
+              .css('position', '')
+              .css('top', '');
+            s.stickyElement.trigger('sticky-end', [s]).parent().removeClass(s.className);
+            s.currentTop = null;
+          }
+        }
+        else {
+          var newTop = documentHeight - s.stickyElement.outerHeight()
+            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          if (newTop < 0) {
+            newTop = newTop + s.topSpacing;
+          } else {
+            newTop = s.topSpacing;
+          }
+          if (s.currentTop != newTop) {
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop);
 
-h1{
-	font-family: "Verdana", sans-serif;
-	max-width: 35em;
-}
+            if (typeof s.getWidthFrom !== 'undefined') {
+              s.stickyElement.css('width', $(s.getWidthFrom).width());
+            }
 
-h2{
-	font-family: "Verdana", sans-serif;
-	max-width: 35em;
-}
+            s.stickyElement.trigger('sticky-start', [s]).parent().addClass(s.className);
+            s.currentTop = newTop;
+          }
+        }
+      }
+    },
+    resizer = function() {
+      windowHeight = $window.height();
 
-h3{
-	font-family: "Verdana", sans-serif;
-	max-width: 35em;
-}
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i];
+        if (typeof s.getWidthFrom !== 'undefined' && s.responsiveWidth === true) {
+          s.stickyElement.css('width', $(s.getWidthFrom).width());
+        }
+      }
+    },
+    methods = {
+      init: function(options) {
+        var o = $.extend({}, defaults, options);
+        return this.each(function() {
+          var stickyElement = $(this);
 
-.site-footer {
-	line-height: 3px;
-	font-weight: bold;
-	font-variant: small-caps;
-	margin-top: 50px;
-	border: 1px solid #CCC;
-}
-.nav-link{
-		text-decoration: none;
-		padding: 0.5em 0.8em;
-		border-radius: 1.25em;
-		background-color: #ddd;
-		color: #333;
-		font-size: 0.9em;
-}
-.nav-link:hover{
-	background-color: grey;
-}
+          var stickyId = stickyElement.attr('id');
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName 
+          var wrapper = $('<div></div>')
+            .attr('id', stickyId + '-sticky-wrapper')
+            .addClass(o.wrapperClassName);
+          stickyElement.wrapAll(wrapper);
 
-.site-title {
-	text-align: right;
-	font-size: 1.45em;
-	font-weight: bold;
-	font-variant: small-caps;
-	text-decoration: none;
-	color: #fff;
-}
+          if (o.center) {
+            stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+          }
 
+          if (stickyElement.css("float") == "right") {
+            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+          }
 
-.site-title-container{
-	float: left;
-	padding-top: 10px;
-	padding-left: 10px;
-}
+          var stickyWrapper = stickyElement.parent();
+          stickyWrapper.css('height', stickyElement.outerHeight());
+          sticked.push({
+            topSpacing: o.topSpacing,
+            bottomSpacing: o.bottomSpacing,
+            stickyElement: stickyElement,
+            currentTop: null,
+            stickyWrapper: stickyWrapper,
+            className: o.className,
+            getWidthFrom: o.getWidthFrom,
+            responsiveWidth: o.responsiveWidth
+          });
+        });
+      },
+      update: scroller,
+      unstick: function(options) {
+        return this.each(function() {
+          var unstickyElement = $(this);
 
-.title-breaker{
-	display: block;
-}
+          var removeIdx = -1;
+          for (var i = 0; i < sticked.length; i++)
+          {
+            if (sticked[i].stickyElement.get(0) == unstickyElement.get(0))
+            {
+                removeIdx = i;
+            }
+          }
+          if(removeIdx != -1)
+          {
+            sticked.splice(removeIdx,1);
+            unstickyElement.unwrap();
+            unstickyElement.removeAttr('style');
+          }
+        });
+      }
+    };
 
-@media(min-width: 510px){
-	.title-breaker{
-		display: none;
-	}
+  // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+  if (window.addEventListener) {
+    window.addEventListener('scroll', scroller, false);
+    window.addEventListener('resize', resizer, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onscroll', scroller);
+    window.attachEvent('onresize', resizer);
+  }
 
-	.site-title{
-		font-size: 1.65em;
-	}
-}
+  $.fn.sticky = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.init.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
+  };
 
-@media(max-width: 375px){
-	.site-title{
-		font-size: 1.25em;
-	}
-}
+  $.fn.unstick = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method ) {
+      return methods.unstick.apply( this, arguments );
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.sticky');
+    }
 
-.left-header{
-	float: left;
-}
-
-
-
-.left-header img{
-	float: left;
-}
-
-@media(max-width: 650px){
-	.left-header{
-		float: none;
-		width: 451px;
-		margin: 0 auto;
-	}
-
-	.nav-bar{
-		text-align: center;
-		font-size: 0.9em;
-	}
-
-	.site-header{
-		padding-top: 1em;
-	}
-}
-
-.title-sub{
-	color: #fff;
-	display: none;
-}
-.contact-img{
-	max-width: 100%;
-}
-.team-img{
-	max-width: 100%;
-}
-
-@media(min-width: 510px){
-	.title-sub{
-		display: block;
-	}
-}
-
-.site-title:hover{
-	color: grey;
-}
-
-
-/**Layout**/
-.container{
-	max-width: 1000px;
-	margin: 0 auto;
-	padding: 0 10px;
-}
-
-.hero-img{
-	max-width: 100%;
-	padding-top: 1em;
-	padding-left: 1em;
-}
-
-.nav-bar{
-	padding: 15px 0;
-}
-
-@media(min-width: 651px){
-	.nav-bar{
-		float: right;
-	}
-
-	.site-header{
-		padding-bottom: 2em;
-		padding-top: 2em;
-	}
-}
-
-.site-header{
-	background-color: #870126;	
-}
-
-/**Navigation**/
-.header-nav{
-	font-weight: bold;
-	text-transform: capitalize;
-	list-style: none;
-	padding-right: 2.3em;
-}
-
-@media(max-width: 450px){
-	.header-nav{
-		padding: 0;
-	}
-}
-
-@media(max-width: 375px){
-	.nav-link{
-		font-size: 0.8em;
-		padding: 0.5em;
-	}
-}
-
-.header-nav li {
-	display: inline-block;
-}
-
-.img-team{
-	float: left;
-}
-/**Columns**/
-
-.col{
-	float: left;
-	width: 50.00%;
-	padding: 1em;
-	text-align: center;
-}
-
-@media(max-width: 510px){
-	.col{
-		width: 100%;
-	}
-
-	.col p{
-		text-align: justify;
-	}
-}
-
-.col img{
-    margin-right: 10px;
-}
-
-.col-main{
-	float: left;
-}
-
-.col-sidebar{
-	width: 30%;
-	float: right;
-	border: 1px dashed;
-}
-
-.sidebar-title{
-	text-align: center;
-}
-
-@media(max-width: 870px){
-	.col-sidebar{
-		width: 100%;
-	}
-
-	.col-main{
-		width: 100%;
-	}
-}
-
-/**Panels**/
-.panels {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-.panel {
-  margin-bottom: 1em;
-  background: white;
-}
-
-.panel-title {
-  font-weight: bold;
-  background: #870126;
-  color: white;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  margin-bottom: 0.25em;
-  border-radius: 0.5em;
-}
-
-.panel-title:hover {
-  background: #333;
-}
-
-.panel-content {
-  padding: 1em;
-  display: none;
-}
-
-p.welcome-text, .welcome-title{
-	max-width: 100%;
-	text-align: center;
-	text-indent: 0;
-}
-
-.col-30{
-	width: 32%;
-	float: left;
-	text-align: center;
-	padding: 5px;
-}
-
-.section-title, p.section-description{
-	text-indent: 0;
-	text-align: center;
-}
-
-.section-img{
-	max-width: 220px;
-}
-
-.index-columns{
-	margin-bottom: 30px;
-}
-
-@media(max-width:810px){
-	.col-30{
-		width: 100%;
-	}	
-	
-	.section-image{
-		float: left;
-		width: 30%;
-	}
-	
-	.section-text{
-		width: 70%;
-		float: right;
-		padding-left: 5px;
-	}
-	
-	.section-title, p.section-description, .section-text{
-		text-align: left;
-	}
-}
-
-@media(max-width:770px){
-	.section-img{
-		max-width: 180px;
-	}
-}
-
-@media(max-width: 645px){
-	.section-image{
-		width: 100%;
-	}
-	
-	.section-title, p.section-description, .section-text{
-		text-align: center;
-	}
-	
-	.section-text{
-		width: 100%;
-		padding-left: 0;
-	}
-}
-
-/**Utilities**/
-
-/**
-* For modern browsers
-* 1. The space content is one way to avoid an Opera bug when the
-* contenteditable attribute is included anywhere else in the document.
-* Otherwise it causes space to appear at the top and bottom of elements
-* that are clearfixed.
-* 2. The use of `table` rather than `block` is only necessary if using
-* `:before` to contain the top-margins of child elements.
-*/
-.cf:before,
-.cf:after {
-	content: " "; /* 1 */
-	display: table; /* 2 */
-}
-.cf:after {
-	clear: both;
-}
-/**
-* For IE 6/7 only
-* Include this rule to trigger hasLayout and contain floats.
-*/
-.cf {
-	*zoom: 1;
-}
+  };
+  $(function() {
+    setTimeout(scroller, 0);
+  });
+})(jQuery);
